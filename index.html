@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lạ Lùng – Vũ.</title>
+
+<style>
+:root{
+    --bg:#080c0a;
+    --card:#0f1713;
+    --card2:#0b120f;
+    --text:#e3efe8;
+    --muted:#7f978c;
+    --border:#1b2a22;
+    --accent:#3a6b52;
+    --glow:rgba(58,107,82,.25);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", system-ui, sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* ===== GRAIN ===== */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== FLOATING LOGO ===== */
+.floating-logo{
+    position:fixed;
+    top:18px;
+    left:18px;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    overflow:hidden;
+    z-index:10001;
+    background:#0b120f;
+    box-shadow:
+        0 0 18px rgba(58,107,82,.35),
+        0 0 40px rgba(58,107,82,.18);
+    animation:logoGlow 4s ease-in-out infinite;
+    transition:.3s ease;
+}
+
+.floating-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+@keyframes logoGlow{
+    0%,100%{
+        box-shadow:
+            0 0 18px rgba(58,107,82,.35),
+            0 0 40px rgba(58,107,82,.18);
+    }
+    50%{
+        box-shadow:
+            0 0 28px rgba(58,107,82,.55),
+            0 0 60px rgba(58,107,82,.28);
+    }
+}
+
+.floating-logo:hover{
+    transform:scale(1.08);
+}
+
+/* ===== NAV ===== */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:10;
+    background:rgba(8,12,10,.9);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 30px 14px 100px; /* chừa chỗ logo */
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+.logo span{color:var(--accent);}
+
+.nav-links{
+    display:flex;
+    gap:26px;
+}
+.nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+}
+.nav-links a:hover{color:var(--text);}
+
+/* ===== BANNER ===== */
+.banner{
+    height:95vh;
+    background:url('lalung.jpg') center/cover no-repeat;
+    position:relative;
+    overflow:hidden;
+}
+
+.banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(5,8,7,.25),
+        rgba(8,12,10,.98)
+    );
+}
+
+.fog{
+    position:absolute;
+    inset:-20%;
+    background:radial-gradient(circle at 30% 40%, rgba(58,107,82,.12), transparent 60%);
+    animation:fogMove 60s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes fogMove{
+    from{transform:translateX(-10%) translateY(0);}
+    to{transform:translateX(10%) translateY(-5%);}
+}
+
+.banner-content{
+    position:absolute;
+    bottom:120px;
+    left:8%;
+    z-index:2;
+}
+
+.banner-content h1{
+    font-size:56px;
+    letter-spacing:3px;
+}
+
+.banner-content p{
+    margin-top:8px;
+    color:var(--muted);
+}
+
+/* ===== MAIN ===== */
+main{
+    padding:100px 8% 60px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+}
+
+.card{
+    background:linear-gradient(180deg,var(--card),var(--card2));
+    border-radius:20px;
+    padding:30px;
+    border:1px solid var(--border);
+    box-shadow:0 25px 50px rgba(0,0,0,.75);
+    transition:.4s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.85),
+        0 0 28px var(--glow);
+}
+
+.card h2{
+    margin-bottom:14px;
+    color:#cfe6da;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+audio, video, img{
+    width:100%;
+    border-radius:14px;
+    background:#050807;
+}
+
+/* ===== FEEDBACK ===== */
+.feedback{
+    margin-top:90px;
+    max-width:720px;
+    margin-inline:auto;
+}
+
+.feedback .card{padding:36px;}
+
+form label{
+    margin-top:16px;
+    display:block;
+    color:var(--muted);
+}
+
+form input, textarea{
+    width:100%;
+    margin-top:6px;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:#0b120f;
+    color:var(--text);
+}
+
+form button{
+    margin-top:22px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#2f5e46,#244a39);
+    color:#e8f3ed;
+    cursor:pointer;
+}
+
+form button:hover{
+    box-shadow:0 0 24px rgba(58,107,82,.35);
+}
+
+/* ===== FOOTER ===== */
+footer{
+    margin-top:90px;
+    text-align:center;
+    padding:30px;
+    color:#617a6f;
+    border-top:1px solid var(--border);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:800px){
+    .grid{grid-template-columns:1fr;}
+    .banner-content h1{font-size:42px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGO GÓC TRÁI -->
+<div class="floating-logo">
+    <img src="logo.png" alt="Logo">
+</div>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo"><span>.</span></div>
+        <div class="nav-links">
+            <a href="#">Trang chủ</a>
+            <a href="#">Âm nhạc</a>
+            <a href="https://www.ngoccs.edu.vn/">Giáo viên hướng dẫn</a>
+            <a href="gioithieu.html">Liên hệ</a>
+        </div>
+    </div>
+</nav>
+
+<section class="banner" id="banner">
+    <div class="fog"></div>
+    <div class="banner-content">
+        <h2>GIỚI THIỆU BÀI HÁT</h2>
+        <h1>LẠ LÙNG</h1>
+        <p>Vũ. • Indie • Một cảm xúc rất khẽ</p>
+    </div>
+</section>
+
+<main>
+    <div class="grid">
+        <div class="card">
+            <h2>Chú thích</h2>
+            <p>
+                Lạ Lùng mang màu xanh của rừng đêm —
+                nơi cảm xúc trôi rất chậm,
+                và ký ức thì không rời đi.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Âm nhạc</h2>
+            <audio id="music" controls>
+                <source src="lalung.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div class="card">
+            <h2>Hình ảnh</h2>
+            <img src="lalung1.jpg">
+        </div>
+
+        <div class="card">
+            <h2>Video</h2>
+            <video controls>
+                <source src="lalung.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</main>
+
+<footer>
+    © 2026 • Lạ Lùng • Vũ.
+    <p>Tác giả: Bùi Xuân Dũng - 12A3</p>
+</footer>
+
+<script>
+window.addEventListener("scroll",()=>{
+    const banner=document.getElementById("banner");
+    banner.style.backgroundPositionY=window.scrollY*0.3+"px";
+});
+
+const audio=document.getElementById("music");
+audio.volume=0;
+
+const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            audio.play();
+            let v=0;
+            const fade=setInterval(()=>{
+                if(v<0.8){
+                    v+=0.02;
+                    audio.volume=v;
+                }else clearInterval(fade);
+            },120);
+        }
+    });
+},{threshold:0.5});
+
+observer.observe(audio);
+</script>
+
+</body>
+</html>
