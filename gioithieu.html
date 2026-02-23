@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giới thiệu tác giả – Bùi Xuân Dũng</title>
+
+<style>
+:root{
+    --bg:#080c0a;
+    --card:#0f1713;
+    --card2:#0b120f;
+    --text:#e3efe8;
+    --muted:#7f978c;
+    --border:#1b2a22;
+    --accent:#3a6b52;
+    --glow:rgba(58,107,82,.25);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", system-ui, sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* ===== GRAIN ===== */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== HERO ===== */
+.hero{
+    height:100vh;
+    background:linear-gradient(
+        to bottom,
+        rgba(8,12,10,.4),
+        rgba(8,12,10,.95)
+    ), url('lalung.jpg') center/cover no-repeat;
+    position:relative;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 30% 40%, rgba(58,107,82,.15), transparent 60%);
+    animation:fogMove 70s linear infinite;
+}
+
+@keyframes fogMove{
+    from{transform:translateX(-10%)}
+    to{transform:translateX(10%)}
+}
+
+.hero-content{
+    position:absolute;
+    bottom:120px;
+    left:8%;
+}
+
+.hero-content h1{
+    font-size:56px;
+    letter-spacing:3px;
+}
+
+.hero-content p{
+    margin-top:10px;
+    color:var(--muted);
+    font-size:18px;
+}
+
+/* ===== MAIN ===== */
+main{
+    padding:100px 8% 80px;
+    display:flex;
+    justify-content:center;
+}
+
+.profile{
+    max-width:800px;
+    width:100%;
+}
+
+.card{
+    background:linear-gradient(180deg,var(--card),var(--card2));
+    border-radius:22px;
+    padding:40px;
+    border:1px solid var(--border);
+    box-shadow:0 25px 55px rgba(0,0,0,.75);
+    transition:.4s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 30px 65px rgba(0,0,0,.85),
+        0 0 30px var(--glow);
+}
+
+.avatar{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:#050807 url('avatar.jpg') center/cover no-repeat;
+    border:2px solid rgba(58,107,82,.4);
+    margin-bottom:26px;
+}
+
+.card h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.role{
+    color:var(--accent);
+    margin-bottom:20px;
+    font-weight:500;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:26px;
+}
+
+.info div{
+    color:var(--muted);
+}
+
+.bio{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:30px 0;
+    color:#617a6f;
+    border-top:1px solid var(--border);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:700px){
+    .hero-content h1{font-size:42px;}
+    .info{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>BÙI XUÂN DŨNG</h1>
+        <p>Tác giả • Người kể chuyện bằng cảm xúc</p>
+    </div>
+</section>
+
+<main>
+    <div class="profile">
+        <div class="card">
+
+            <div class="avatar"></div>
+
+            <h2>Bùi Xuân Dũng</h2>
+            <div class="role">Tác giả bài web “Lạ Lùng”</div>
+
+            <div class="info">
+                <div>📘 Lớp: <b>12A3</b></div>
+                <div>🏫 Trường: <b>THPT số 2 Nguyễn Bỉnh Khiêm</b></div>
+                <div>🎵 Sở thích: <b>Nhạc indie, thiết kế web</b></div>
+                <div>🎨 Phong cách: <b>Trầm – điện ảnh – sâu lắng</b></div>
+            </div>
+
+            <div class="bio">
+                Dũng là người yêu những điều rất khẽ:
+                âm nhạc indie, màu xanh rừng đêm
+                và những cảm xúc không dễ gọi tên.
+                <br><br>
+                Bài web này là cách Dũng kể lại
+                những rung động nhỏ bé của tuổi học trò —
+                chậm, trầm và ở lại lâu.
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    © 2026 • Giới thiệu tác giả • Bùi Xuân Dũng
+</footer>
+
+</body>
+</html>
